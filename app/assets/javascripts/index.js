@@ -16,7 +16,7 @@ function displayIdeas(ideas){
         '<div class="panel-heading">' +
           '<div class="container">' +
             '<div class="row">' +
-              '<h3 contenteditable="true" class="panel-title">Title: ' + idea.title + '</h3><br>' +
+              '<h3 contenteditable="true" class="panel-title">Title: ' + '<span>' + idea.title + '</span>' + '</h3><br>' +
             '</div>' +
           '</div>' +
           '<div class="container">' +
@@ -39,8 +39,8 @@ function displayIdeas(ideas){
         '</div>' +
         '<div class="panel-body">' +
           '<div class="container">' +
-            '<div contenteditable="true" class="row">' +
-              '<p>'+ idea.body + '</p>' +
+            '<div contenteditable="true" class="row idea-body">' +
+               idea.body +
             '</div><br>' +
             '<div class="row">' +
               '<div class container col-sm-3 col-md-3 col-lg-3>' +
