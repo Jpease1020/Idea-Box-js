@@ -1,3 +1,4 @@
-// $(document).ready(function(){
-//   getIdeas();
-// });
+$(document).ready(function(){
+  getIdeas();
+  saveNewIdea();
+});
