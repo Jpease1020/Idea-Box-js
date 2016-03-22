@@ -6,8 +6,8 @@ function saveNewIdea(){
       url: '/api/v1/ideas',
       type: 'POST',
       data: {
-        'ideaTitle': ideaTitle,
-        'ideaBody': ideaBody
+        'title': ideaTitle,
+        'body': ideaBody
       },
       success: function(response){
         $('#new-idea-title').val("");

@@ -5,10 +5,16 @@ class Api::V1::IdeasController < Api::ApiController
   end
 
   def create
-    respond_with :api, :v1, Idea.create(title: params['ideaTitle'], body: params['ideaBody'])
+    respond_with :api, :v1, Idea.create(idea_params)
   end
 
   def destroy
     respond_with Idea.destroy(params[:id])
+  end
+
+  private
+
+  def idea_params
+    params.permit(:title, :body, :quality)
   end
 end
