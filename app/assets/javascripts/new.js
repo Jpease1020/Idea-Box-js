@@ -10,10 +10,10 @@ function saveNewIdea(){
         'ideaBody': ideaBody
       },
       success: function(response){
+        $('#new-idea-title').val("");
+        $('#new-idea-body').val("")
         displayNewIdea(response);
-        console.log("you got a new one pal")
       }, error: function(xhr) {
-        console.log("new idea was not created")
       }
     })
   })
@@ -21,13 +21,26 @@ function saveNewIdea(){
 
 function displayNewIdea(data){
   var idea = data
-  $('#idea-index').prepend('<div class="panel panel-default">' +
-  '<div class="panel-heading">' +
-    '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
-    '<p>Idea Quality: ' + idea.quality + '</p>' +
-  '</div>' +
-  '<div class="panel-body">' +
-    idea.body +
-  '</div>' +
-'</div>')
+  $('#idea-index').prepend(
+    '<div class="panel panel-default">' +
+      '<div class="panel-heading">' +
+        '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
+        '<p>Idea Quality: ' + idea.quality + '</p>' +
+      '</div>' +
+      '<div class="panel-body">' +
+        '<div class="container col-sm-12 col-md-12 col-lg-12">' +
+        '<div class="container row" data-id="'+ idea.id +'">' +
+            idea.body +
+          '</div><br>' +
+          '<div class="row">' +
+            '<div class= "container col-sm-3 col-md-3 col-lg-3">' +
+              '<button type="button" class="btn btn-primary btn-sm" id="delete-button">' +
+                'Delete Idea' +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+    )
 }

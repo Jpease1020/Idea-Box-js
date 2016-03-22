@@ -7,4 +7,8 @@ class Api::V1::IdeasController < Api::ApiController
   def create
     respond_with :api, :v1, Idea.create(title: params['ideaTitle'], body: params['ideaBody'])
   end
+
+  def destroy
+    respond_with Idea.destroy(params[:id])
+  end
 end
