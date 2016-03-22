@@ -19,22 +19,41 @@ function saveNewIdea(){
   })
 }
 
-function displayNewIdea(data){
-  var idea = data
+function displayNewIdea(idea){
   $('#idea-index').prepend(
-    '<div class="panel panel-default">' +
+    '<div class="panel panel-default idea" data-id="'+ idea.id +'">' +
       '<div class="panel-heading">' +
-        '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
-        '<p>Idea Quality: ' + idea.quality + '</p>' +
+        '<div class="container">' +
+          '<div class="row">' +
+            '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
+          '</div>' +
+        '</div>' +
+        '<div class="container">' +
+          '<div class="row">' +
+            '<div class="col-sm-2 col-md-2 col-lg-2>">' +
+              '<p>Idea Quality: ' + idea.quality + '</p>' +
+            '</div>' +
+            '<div class="col-sm-1 col-md-1 col-lg-1">' +
+              '<button type="button" class="btn btn-default btn-sm thumbs-up-button">' +
+                '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Star' +
+              '</button>' +
+            '</div>' +
+            '<div class="col-sm-1 col-md-1 col-lg-1">' +
+              '<button type="button" class="btn btn-default btn-sm thumbs-down-button">' +
+                '<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> Star' +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
       '</div>' +
       '<div class="panel-body">' +
-        '<div class="container col-sm-12 col-md-12 col-lg-12">' +
-        '<div class="container row" data-id="'+ idea.id +'">' +
+        '<div class="container">' +
+          '<div class="row">' +
             idea.body +
           '</div><br>' +
           '<div class="row">' +
-            '<div class= "container col-sm-3 col-md-3 col-lg-3">' +
-              '<button type="button" class="btn btn-primary btn-sm" id="delete-button">' +
+            '<div class container col-sm-3 col-md-3 col-lg-3>' +
+              '<button type="button" class="btn btn-primary btn-sm delete-button">' +
                 'Delete Idea' +
               '</button>' +
             '</div>' +
