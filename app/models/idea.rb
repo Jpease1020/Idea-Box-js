@@ -1,3 +1,6 @@
 class Idea < ActiveRecord::Base
-  enum quality: %w( swill plausible genius )
+
+  def self.set_quality
+    ["swill", "plausible", "genius"]
+  end
 end
