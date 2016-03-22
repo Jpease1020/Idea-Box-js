@@ -14,12 +14,32 @@ function displayIdeas(ideas){
     $('#idea-index').append(
       '<div class="panel panel-default">' +
         '<div class="panel-heading">' +
-          '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
-          '<p>Idea Quality: ' + idea.quality + '</p>' +
+          '<div class="container">' +
+            '<div class="row">' +
+              '<h3 class="panel-title">Title: ' + idea.title + '</h3><br>' +
+            '</div>' +
+          '</div>' +
+          '<div class="container">' +
+            '<div class="row">' +
+              '<div class="col-sm-2 col-md-2 col-lg-2>"' +
+                '<p>Idea Quality: ' + idea.quality + '</p>' +
+              '</div>' +
+              '<div class="col-sm-1 col-md-1 col-lg-1">' +
+                '<button type="button" class="btn btn-default btn-sm">' +
+                  '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Star' +
+                '</button>' +
+              '</div>' +
+              '<div class="col-sm-1 col-md-1 col-lg-1">' +
+                '<button type="button" class="btn btn-default btn-sm">' +
+                  '<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Star' +
+                '</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
         '</div>' +
         '<div class="panel-body">' +
-          '<div class="container col-sm-12 col-md-12 col-lg-12">' +
-            '<div class="container row" data-id="'+ idea.id +'">' +
+          '<div class="container">' +
+            '<div class="row" data-id="'+ idea.id +'">' +
               idea.body +
             '</div><br>' +
             '<div class="row">' +
