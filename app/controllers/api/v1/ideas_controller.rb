@@ -24,7 +24,8 @@ class Api::V1::IdeasController < Api::ApiController
   end
 
   def update_title_and_or_body(idea)
-    respond_with idea.update(params[:id], idea_params)
+    idea.update(idea_params)
+    render json: idea
   end
 
   def update_quality(idea)
