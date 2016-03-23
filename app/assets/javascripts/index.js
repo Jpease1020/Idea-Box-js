@@ -11,6 +11,15 @@ function getIdeas(){
 
 function displayIdeas(ideas){
   ideas.forEach(function(idea){
+    idea.body = truncateIdeaBody(idea)
     $('#idea-index').append(ideaHtml(idea))
   });
+}
+
+function truncateIdeaBody(idea){
+  var choppedBody = idea.body.slice(0,101);
+  for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
+        choppedBody = choppedBody.slice(0, i)
+  }
+  return choppedBody
 }
