@@ -31,7 +31,7 @@ function ideaHtml(idea){
       '<div class="container">' +
         '<div contenteditable="true" class="row edit-idea">' +
           '<span data-id="body">' +
-            idea.body +
+            idea.body + 
           '</span>' +
         '</div><br>' +
         '<div class="row">' +

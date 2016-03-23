@@ -20,6 +20,10 @@ function saveNewIdea(){
 }
 
 function displayNewIdea(idea){
-  idea.body = truncateIdeaBody(idea)
+  if(idea.body){
+    idea.body = truncateIdeaBody(idea)
+  } else {
+    idea.body = ""
+  }
   $('#idea-index').prepend(ideaHtml(idea))
 }
