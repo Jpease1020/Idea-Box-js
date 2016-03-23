@@ -1,8 +1,9 @@
 function editIdeas(){
   $('#idea-index').delegate('.edit-idea', 'blur', function(){
-    var $ideaDataId = $(this).children('span').attr('data-id')
+    var ideaObject = $(this).children('span')
+    var $ideaDataId = ideaObject.attr('data-id')
     var $ideaId = $(this).closest('.idea').attr('data-id')
-    var $ideaNewData = $(this).children('span').text()
+    var $ideaNewData = ideaObject.text()
 
     if($ideaDataId == "title"){
       ideaParams = { 'title': $ideaNewData }
@@ -19,6 +20,6 @@ function editIdeas(){
       }, error: function(xhr){
         console.log(xhr.responseText)
       }
-    })
+    });
   })
 }

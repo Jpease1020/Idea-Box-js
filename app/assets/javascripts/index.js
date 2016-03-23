@@ -44,7 +44,7 @@ function displayIdeas(ideas){
           '<div class="container">' +
             '<div contenteditable="true" class="row edit-idea">' +
               '<span data-id="body">' +
-                idea.body +
+                idea.body.substring(0, 99) +
               '</span>' +
             '</div><br>' +
             '<div class="row">' +
