@@ -11618,9 +11618,7 @@ function editIdeas(){
       type: 'PUT',
       data: ideaParams,
       success: function(response){
-        console.log('good')
       }, error: function(xhr){
-        console.log(xhr.responseText)
       }
     });
   })
@@ -11659,7 +11657,7 @@ function ideaHtml(idea){
       '<div class="container">' +
         '<div contenteditable="true" class="row edit-idea">' +
           '<span data-id="body">' +
-            idea.body.substring(0, 99) +
+            idea.body +
           '</span>' +
         '</div><br>' +
         '<div class="row">' +
@@ -11688,8 +11686,17 @@ function getIdeas(){
 
 function displayIdeas(ideas){
   ideas.forEach(function(idea){
+    idea.body = truncateIdeaBody(idea)
     $('#idea-index').append(ideaHtml(idea))
   });
+}
+
+function truncateIdeaBody(idea){
+  var choppedBody = idea.body.slice(0,101);
+  for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
+        choppedBody = choppedBody.slice(0, i)
+  }
+  return choppedBody
 }
 ;
 $(document).ready(function(){
@@ -11721,6 +11728,7 @@ function saveNewIdea(){
 }
 
 function displayNewIdea(idea){
+  idea.body = truncateIdeaBody(idea)
   $('#idea-index').prepend(ideaHtml(idea))
 }
 ;
