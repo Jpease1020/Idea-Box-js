@@ -21,5 +21,5 @@ function truncateIdeaBody(idea){
   for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
         choppedBody = choppedBody.slice(0, i)
   }
-  return choppedBody
+  return choppedBody.slice(0, -1) + "..."
 }
