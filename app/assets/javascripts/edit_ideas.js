@@ -16,9 +16,7 @@ function editIdeas(){
       type: 'PUT',
       data: ideaParams,
       success: function(response){
-        console.log('good')
       }, error: function(xhr){
-        console.log(xhr.responseText)
       }
     });
   })
