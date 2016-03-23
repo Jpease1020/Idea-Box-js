@@ -20,5 +20,6 @@ function saveNewIdea(){
 }
 
 function displayNewIdea(idea){
+  idea.body = truncateIdeaBody(idea)
   $('#idea-index').prepend(ideaHtml(idea))
 }
