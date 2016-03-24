@@ -5,7 +5,9 @@ class Api::V1::IdeasController < Api::ApiController
   end
 
   def create
-    respond_with :api, :v1, Idea.create(idea_params)
+    idea = Idea.create(title: idea_params[:title], body: idea_params[:body])
+    add_or_create_tags(idea,idea_params[:tags])
+    respond_with :api, :v1, idea
   end
 
   def update
@@ -21,6 +23,17 @@ class Api::V1::IdeasController < Api::ApiController
   private
 
   def idea_params
-    params.permit(:title, :body, :id)
+    params.permit(:title, :body, :id, :tags, :format)
+  end
+
+  def add_or_create_tags(idea, tags)
+    tags.split(', ').each do |tag|
+      if Tag.find_by(tag: tag)
+        idea.tags.create(tag: tag)
+      else
+        tag = Tag.create(tag: tag)
+        idea.tags.create(tag: tag.tag)
+      end
+    end
   end
 end

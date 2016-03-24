@@ -1,4 +1,5 @@
 class Idea < ActiveRecord::Base
+  has_many :tags
 
   def self.set_quality
     ["swill", "plausible", "genius"]
