@@ -30,8 +30,8 @@ function ideaHtml(idea){
       '</div>' +
       '<div class="panel-body">' +
         '<div class="container">' +
-          '<div contenteditable="true" class="row edit-idea">' +
-            '<span class="body" data-id="body">' +
+          '<div class="row edit-idea">' +
+            '<span contenteditable="true" class="body" data-id="body">' +
               idea.body +
             '</span>' +
           '</div><br>' +
