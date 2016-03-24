@@ -10,7 +10,8 @@ class Api::V1::IdeasController < Api::ApiController
 
   def update
     idea = Idea.find(params[:id])
-    update_quality(idea) || update_title_and_or_body(idea)
+    idea.update_quality(idea, params) || idea.update_title_and_or_body(idea, idea_params)
+    render json: idea
   end
 
   def destroy
@@ -21,24 +22,5 @@ class Api::V1::IdeasController < Api::ApiController
 
   def idea_params
     params.permit(:title, :body, :id)
-  end
-
-  def update_title_and_or_body(idea)
-    idea.update(idea_params)
-    render json: idea
-  end
-
-  def update_quality(idea)
-    if params[:thumb_action] == "thumbs-up" && idea.quality != "genius"
-      current_position = Idea.set_quality.index(idea.quality)
-      new_position = current_position += 1
-      idea.update(quality: Idea.set_quality[new_position])
-      render json: idea
-    elsif params[:thumb_action] == "thumbs-down" && idea.quality != "swill"
-      current_position = Idea.set_quality.index(idea.quality)
-      new_position = current_position -= 1
-      idea.update(quality: Idea.set_quality[new_position])
-      render json: idea
-    end
   end
 end
