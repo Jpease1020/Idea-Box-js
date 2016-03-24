@@ -16,15 +16,19 @@ group :production do
 end
 
 group :development, :test do
-  gem 'byebug'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'pry-rails'
+  gem "byebug"
+  gem "rspec-rails", "~> 3.0"
+  gem "capybara"
+  gem "database_cleaner"
+  gem "selenium-webdriver"
+  gem "factory_girl_rails", "~> 4.0"
+  gem "shoulda-matchers", "~> 3.1"
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem "quiet_assets"
 end
 
 group :test do
