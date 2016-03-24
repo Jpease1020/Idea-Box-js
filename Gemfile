@@ -22,7 +22,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara"
   gem "database_cleaner"
-  # gem "selenium-webdriver"
+  gem "selenium-webdriver"
   gem "factory_girl_rails", "~> 4.0"
   gem "shoulda-matchers", "~> 3.1"
 end
