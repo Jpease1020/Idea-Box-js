@@ -12,6 +12,13 @@
     </div>
   </div>
 </nav>
+<div class="row">
+  <ul class="tags">
+    <% @tags.each do |tag| %>
+    <li><%= tag.tag %></li>
+    <% end %>
+  </ul>
+</div>
 <div class="container text-center">
   <h1>Welcome to the Idea Box</h1>
 </div>

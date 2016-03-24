@@ -28,12 +28,9 @@ class Api::V1::IdeasController < Api::ApiController
 
   def add_or_create_tags(idea, tags)
     tags.split(', ').each do |tag|
-      if Tag.find_by(tag: tag)
-        idea.tags.create(tag: tag)
-      else
-        tag = Tag.create(tag: tag)
-        idea.tags.create(tag: tag.tag)
-      end
+      tag = Tag.find_or_create_by(tag: tag)
+      tag.id = idea.id
+      byebug
     end
   end
 end
