@@ -31,7 +31,7 @@ function displayIdeas(ideas){
 // the idea comes to the displayIdeas funtion from the successfull response which comes back from the controller
 
 // function truncateIdeaBody(idea){
-//   var choppedBody = idea.body.slice(0,101);
+//   var choppedBody = " " + idea.body.slice(0,101);
 //   for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
 //         choppedBody = choppedBody.slice(0, i)
 //   }
