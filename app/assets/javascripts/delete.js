@@ -9,6 +9,7 @@ function deleteIdea(){
       success: function(response){
         removeIdea(ideaElement)
       }, error: function(xhr) {
+        console.log(xhr.responseText)
       }
     })
   })

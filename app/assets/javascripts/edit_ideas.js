@@ -17,6 +17,7 @@ function editIdeas(){
       data: ideaParams,
       success: function(response){
       }, error: function(xhr){
+        console.log(xhr.responseText)
       }
     });
   })

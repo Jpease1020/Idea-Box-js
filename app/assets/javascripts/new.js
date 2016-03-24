@@ -14,6 +14,7 @@ function saveNewIdea(){
         $('#new-idea-body').val("")
         displayNewIdea(response);
       }, error: function(xhr) {
+        console.log(xhr.responseText)
       }
     })
   })

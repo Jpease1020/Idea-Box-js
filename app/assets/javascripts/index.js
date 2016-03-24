@@ -5,6 +5,7 @@ function getIdeas(){
     success: function(response){
       displayIdeas(response);
     }, error: function(xhr) {
+      console.log(xhr.responseText)
     }
   })
 }
