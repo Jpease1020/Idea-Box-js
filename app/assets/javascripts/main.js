@@ -5,4 +5,5 @@ $(document).ready(function(){
   setQuality();
   editIdeas();
   searchIdeas();
+  sortByQuality();
 });
