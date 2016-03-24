@@ -15,7 +15,6 @@ function thumbsUpIdea(){
             },
       success: function(response){
         resetDisplayQuality(response, $status)
-        console.log('good')
       }, error: function(xhr){
         console.log(xhr.responseText)
       }
@@ -34,7 +33,6 @@ function thumbsUpIdea(){
              },
        success: function(response){
          resetDisplayQuality(response, $status)
-         console.log('good')
        }, error: function(xhr){
          console.log(xhr.responseText)
        }
