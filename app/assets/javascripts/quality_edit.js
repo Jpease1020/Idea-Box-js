@@ -1,17 +1,17 @@
 function setQuality(){
-  thumbsUpIdea();
+  thumbsUpIdea()
   thumbsDownIdea();
 }
 
-function thumbsUpIdea(){
-  $('#idea-index').delegate('.thumbs-up-button', 'click', function() {
+function qualityChange(button, action){
+  $('#idea-index').delegate(button, 'click', function() {
     var $ideaId = $(this).closest('.idea').attr('data-id')
     var $status = $(this).parents().siblings('.col-md-2').children('p')
     $.ajax({
       url: 'api/v1/ideas/' + $ideaId,
       type: 'PUT',
       data: { 'id': $ideaId,
-    'thumb_action': "thumbs-up"
+    'thumb_action': action
             },
       success: function(response){
         resetDisplayQuality(response, $status)
@@ -21,23 +21,13 @@ function thumbsUpIdea(){
     })
   })
 };
+
+function thumbsUpIdea(){
+  qualityChange('.thumbs-up-button', "thumbs-up")
+};
+
  function thumbsDownIdea(){
-   $('#idea-index').delegate('.thumbs-down-button', 'click', function() {
-     var $ideaId = $(this).closest('.idea').attr('data-id')
-     var $status = $(this).parents().siblings('.col-md-2').children('p')
-     $.ajax({
-       url: 'api/v1/ideas/' + $ideaId,
-       type: 'PUT',
-       data: { 'id': $ideaId,
-     'thumb_action': "thumbs-down"
-             },
-       success: function(response){
-         resetDisplayQuality(response, $status)
-       }, error: function(xhr){
-         console.log(xhr.responseText)
-       }
-     })
-   })
+   qualityChange('.thumbs-down-button', "thumbs-down")
  }
 
 function resetDisplayQuality(idea, status){
