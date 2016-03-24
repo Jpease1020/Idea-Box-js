@@ -17,9 +17,13 @@ function displayIdeas(ideas){
 }
 
 function truncateIdeaBody(idea){
-  var choppedBody = idea.body.slice(0,101);
-  for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
+  if (idea.body.length > 100){
+    var choppedBody = " " + idea.body.slice(0,102);
+    for (i = choppedBody.length - 1; choppedBody[i] != " "; i--){
         choppedBody = choppedBody.slice(0, i)
+    }
+    return choppedBody.slice(0, -1) + "..."
+  } else {
+    return idea.body
   }
-  return choppedBody.slice(0, -1) + "..."
 }
