@@ -5,7 +5,6 @@ function sortByQuality(){
     var geniusIdeas = $('.genius').closest('.idea')
     var plausibleIdeas = $('.plausible').closest('.idea')
     var swillIdeas = $('.swill').closest('.idea')
-    debugger
     if(counter % 2 == 0){
       $('.idea').remove()
       $('#idea-index').append([swillIdeas, plausibleIdeas, geniusIdeas])
