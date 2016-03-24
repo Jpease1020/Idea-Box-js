@@ -11591,6 +11591,7 @@ function deleteIdea(){
       success: function(response){
         removeIdea(ideaElement)
       }, error: function(xhr) {
+        console.log(xhr.responseText)
       }
     })
   })
@@ -11605,7 +11606,7 @@ function editIdeas(){
     var ideaObject = $(this).children('span')
     var $ideaDataId = ideaObject.attr('data-id')
     var $ideaId = $(this).closest('.idea').attr('data-id')
-    var $ideaNewData = ideaObject.text()
+    var $ideaNewData = ideaObject.text() || " "
 
     if($ideaDataId == "title"){
       ideaParams = { 'title': $ideaNewData }
@@ -11619,6 +11620,7 @@ function editIdeas(){
       data: ideaParams,
       success: function(response){
       }, error: function(xhr){
+        console.log(xhr.responseText)
       }
     });
   })
@@ -11638,8 +11640,8 @@ function ideaHtml(idea){
         '</div>' +
         '<div class="container">' +
           '<div class="row">' +
-            '<div class="col-sm-2 col-md-2 col-lg-2>">' +
-              '<p>Idea Quality: ' + idea.quality + '</p>' +
+            '<div class="col-sm-2 col-md-2 col-lg-2">' +
+              '<p class=' + idea.quality + '>Idea Quality: ' + idea.quality + '</p>' +
             '</div>' +
             '<div class="col-sm-1 col-md-1 col-lg-1">' +
               '<button type="button" class="btn btn-default btn-sm thumbs-up-button">' +
@@ -11656,8 +11658,8 @@ function ideaHtml(idea){
       '</div>' +
       '<div class="panel-body">' +
         '<div class="container">' +
-          '<div contenteditable="true" class="row edit-idea">' +
-            '<span class="body" data-id="body">' +
+          '<div class="row edit-idea">' +
+            '<span contenteditable="true" class="body" data-id="body">' +
               idea.body +
             '</span>' +
           '</div><br>' +
@@ -11681,6 +11683,7 @@ function getIdeas(){
     success: function(response){
       displayIdeas(response);
     }, error: function(xhr) {
+      console.log(xhr.responseText)
     }
   })
 }
@@ -11711,6 +11714,7 @@ $(document).ready(function(){
   setQuality();
   editIdeas();
   searchIdeas();
+  sortByQuality();
 });
 function saveNewIdea(){
   $('#submit-new-idea').on('click', function(){
@@ -11728,6 +11732,7 @@ function saveNewIdea(){
         $('#new-idea-body').val("")
         displayNewIdea(response);
       }, error: function(xhr) {
+        console.log(xhr.responseText)
       }
     })
   })
@@ -11739,47 +11744,35 @@ function displayNewIdea(idea){
 }
 ;
 function setQuality(){
-  thumbsUpIdea();
+  thumbsUpIdea()
   thumbsDownIdea();
 }
 
-function thumbsUpIdea(){
-  $('#idea-index').delegate('.thumbs-up-button', 'click', function() {
+function qualityChange(button, action){
+  $('#idea-index').delegate(button, 'click', function() {
     var $ideaId = $(this).closest('.idea').attr('data-id')
     var $status = $(this).parents().siblings('.col-md-2').children('p')
     $.ajax({
       url: 'api/v1/ideas/' + $ideaId,
       type: 'PUT',
       data: { 'id': $ideaId,
-    'thumb_action': "thumbs-up"
+    'thumb_action': action
             },
       success: function(response){
         resetDisplayQuality(response, $status)
-        console.log('good')
       }, error: function(xhr){
         console.log(xhr.responseText)
       }
     })
   })
 };
+
+function thumbsUpIdea(){
+  qualityChange('.thumbs-up-button', "thumbs-up")
+};
+
  function thumbsDownIdea(){
-   $('#idea-index').delegate('.thumbs-down-button', 'click', function() {
-     var $ideaId = $(this).closest('.idea').attr('data-id')
-     var $status = $(this).parents().siblings('.col-md-2').children('p')
-     $.ajax({
-       url: 'api/v1/ideas/' + $ideaId,
-       type: 'PUT',
-       data: { 'id': $ideaId,
-     'thumb_action': "thumbs-down"
-             },
-       success: function(response){
-         resetDisplayQuality(response, $status)
-         console.log('good')
-       }, error: function(xhr){
-         console.log(xhr.responseText)
-       }
-     })
-   })
+   qualityChange('.thumbs-down-button', "thumbs-down")
  }
 
 function resetDisplayQuality(idea, status){
@@ -11798,6 +11791,24 @@ function searchIdeas(){
       return !(ideaBodyAndText.includes(inputText))
     })
     hideIdeas.addClass('hidden')
+  })
+}
+;
+function sortByQuality(){
+  $('.sorter').click(function(){
+    $('.sort').append("<p class='counter'></p>")
+    var counter = $('.counter').size()
+    var geniusIdeas = $('.genius').closest('.idea')
+    var plausibleIdeas = $('.plausible').closest('.idea')
+    var swillIdeas = $('.swill').closest('.idea')
+    debugger
+    if(counter % 2 == 0){
+      $('.idea').remove()
+      $('#idea-index').append([geniusIdeas, plausibleIdeas, swillIdeas])
+    } else if(counter % 2 != 0){
+      $('.idea').remove()
+      $('#idea-index').append([swillIdeas, plausibleIdeas, geniusIdeas])
+    }
   })
 }
 ;
