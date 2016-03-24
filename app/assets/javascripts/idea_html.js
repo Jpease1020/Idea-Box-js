@@ -12,8 +12,8 @@ function ideaHtml(idea){
         '</div>' +
         '<div class="container">' +
           '<div class="row">' +
-            '<div class="col-sm-2 col-md-2 col-lg-2>">' +
-              '<p>Idea Quality: ' + idea.quality + '</p>' +
+            '<div class="col-sm-2 col-md-2 col-lg-2">' +
+              '<p class=' + idea.quality + '>Idea Quality: ' + idea.quality + '</p>' +
             '</div>' +
             '<div class="col-sm-1 col-md-1 col-lg-1">' +
               '<button type="button" class="btn btn-default btn-sm thumbs-up-button">' +
