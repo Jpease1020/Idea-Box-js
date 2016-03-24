@@ -11804,10 +11804,10 @@ function sortByQuality(){
     debugger
     if(counter % 2 == 0){
       $('.idea').remove()
-      $('#idea-index').append([geniusIdeas, plausibleIdeas, swillIdeas])
+      $('#idea-index').append([swillIdeas, plausibleIdeas, geniusIdeas])
     } else if(counter % 2 != 0){
       $('.idea').remove()
-      $('#idea-index').append([swillIdeas, plausibleIdeas, geniusIdeas])
+      $('#idea-index').append([geniusIdeas, plausibleIdeas, swillIdeas])
     }
   })
 }
